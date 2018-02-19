@@ -146,5 +146,11 @@ namespace NAppUpdate.Framework.Utils
 					yield break;
 			}
 		}
+
+		public static string GetFullPath(string localPath)
+		{
+			var currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+			return Path.Combine(currentDirectory, localPath);
+		}
 	}
 }
