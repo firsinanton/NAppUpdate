@@ -198,12 +198,15 @@ namespace NAppUpdate.Updater
 			}
 			else
 			{
-				Log("\tRollback...");
-				foreach (var task in completedTasks)
+				Log("Execution failed. Rollback tasks...");
+
+				foreach (var t in completedTasks)
 				{
+					Log("Task \"{0}\": {1}", t.ToString(), t.ExecutionStatus);
 					try
 					{
-						task.Rollback();
+						Log("\tRollback...");
+						t.Rollback();
 					}
 					catch (Exception ex)
 					{
