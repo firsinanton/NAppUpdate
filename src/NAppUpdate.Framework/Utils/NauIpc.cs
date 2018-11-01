@@ -28,6 +28,7 @@ namespace NAppUpdate.Framework.Utils
 			public string AppPath { get; set; }
 			public string WorkingDirectory { get; set; }
 			public bool RelaunchApplication { get; set; }
+			public string RelaunchArguments { get; set; }
 		}
 
 		private const int PIPE_TIMEOUT = 15000;
