@@ -319,7 +319,18 @@ namespace NAppUpdate.Framework
 		/// <returns>True if successful (unless a restart was required</returns>
 		public void ApplyUpdates(bool relaunchApplication)
 		{
-			ApplyUpdates(relaunchApplication, false, false);
+			ApplyUpdates(relaunchApplication, "");
+		}
+
+		/// <summary>
+		/// Starts the updater executable and sends update data to it
+		/// </summary>
+		/// <param name="relaunchApplication">true if relaunching the caller application is required; false otherwise</param>
+		/// <param name="relaunchArguments">arguments that should be used when relaunching application</param>
+		/// <returns>True if successful (unless a restart was required</returns>
+		public void ApplyUpdates(bool relaunchApplication, string relaunchArguments)
+		{
+			ApplyUpdates(relaunchApplication, relaunchArguments, false, false);
 		}
 
 		/// <summary>
@@ -330,6 +341,19 @@ namespace NAppUpdate.Framework
 		/// <param name="updaterShowConsole">true if the updater shows the console window; false otherwise</param>
 		/// <returns>True if successful (unless a restart was required</returns>
 		public void ApplyUpdates(bool relaunchApplication, bool updaterDoLogging, bool updaterShowConsole)
+		{
+			ApplyUpdates(relaunchApplication, "", false, false);
+		}
+
+		/// <summary>
+		/// Starts the updater executable and sends update data to it
+		/// </summary>
+		/// <param name="relaunchApplication">true if relaunching the caller application is required; false otherwise</param>
+		/// <param name="relaunchArguments">arguments that should be used when relaunching application</param>
+		/// <param name="updaterDoLogging">true if the updater writes to a log file; false otherwise</param>
+		/// <param name="updaterShowConsole">true if the updater shows the console window; false otherwise</param>
+		/// <returns>True if successful (unless a restart was required</returns>
+		public void ApplyUpdates(bool relaunchApplication, string relaunchArguments, bool updaterDoLogging, bool updaterShowConsole)
 		{
 			if (IsWorking)
 				throw new InvalidOperationException("Another update process is already in progress");
@@ -439,6 +463,7 @@ namespace NAppUpdate.Framework
 										AppPath = ApplicationPath,
 										WorkingDirectory = Environment.CurrentDirectory,
 										RelaunchApplication = relaunchApplication,
+										RelaunchArguments = relaunchArguments,
 										LogItems = Logger.LogItems,
 									};
 
