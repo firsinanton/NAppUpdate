@@ -463,7 +463,7 @@ namespace NAppUpdate.Framework
 										AppPath = ApplicationPath,
 										WorkingDirectory = Environment.CurrentDirectory,
 										RelaunchApplication = relaunchApplication,
-										RelaunchArguments = relaunchArguments,
+										RelaunchArguments = string.IsNullOrWhiteSpace(relaunchArguments) ? null : relaunchArguments,
 										LogItems = Logger.LogItems,
 									};
 
